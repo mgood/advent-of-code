@@ -1,3 +1,6 @@
+import re
+
+
 def is_valid(id: int):
     s = str(id)
     digits = len(s)
@@ -6,10 +9,16 @@ def is_valid(id: int):
     return s[: digits // 2] != s[digits // 2 :]
 
 
-def invalid_sum(ranges):
-    return sum(
-        id for (lo, hi) in ranges for id in range(lo, hi + 1) if not is_valid(id)
-    )
+def invalid_entries(ranges, valid=is_valid):
+    return (id for (lo, hi) in ranges for id in range(lo, hi + 1) if not valid(id))
+
+
+def invalid_sum(ranges, valid=is_valid):
+    return sum(invalid_entries(ranges, valid=valid))
+
+
+def is_valid2(id: int):
+    return not re.match(r"^(\d+)\1+$", str(id))
 
 
 if __name__ == "__main__":
@@ -17,4 +26,4 @@ if __name__ == "__main__":
 
     input = sys.stdin.read().strip()
     ranges = [tuple(map(int, r.split("-"))) for r in input.split(",")]
-    print(invalid_sum(ranges))
+    print(invalid_sum(ranges, valid=is_valid2))
