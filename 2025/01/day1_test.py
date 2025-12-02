@@ -1,5 +1,5 @@
 import pytest
-from day1 import *
+from day1 import parse, rotate
 
 
 @pytest.mark.parametrize(
@@ -12,7 +12,7 @@ from day1 import *
         ("R60", 60),
     ],
 )
-def test_parse(rotation, expected):
+def test_parse(rotation: str, expected: int):
     assert parse(rotation) == expected
 
 
@@ -25,5 +25,5 @@ def test_parse(rotation, expected):
         (0, "L5", 95),
     ],
 )
-def test_rotate(start, rotation, expected):
+def test_rotate(start: int, rotation: str, expected: int):
     assert rotate(start, rotation) == expected

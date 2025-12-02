@@ -1,8 +1,8 @@
-def parse(rotation):
+def parse(rotation: str):
     return int(rotation.replace("L", "-").replace("R", "+"))
 
 
-def rotate(start, rotation):
+def rotate(start: int, rotation: str):
     return (start + parse(rotation)) % 100
 
 
