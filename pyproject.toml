@@ -1,0 +1,12 @@
+[project]
+name = "aoc"
+version = "2025.12.03"
+dependencies = [
+  "pytest",
+  "pytest-xdist",
+  "mypy",
+]
+
+[tool.basedpyright]
+venv = ".venv/aoc"
+venvPath = "."
